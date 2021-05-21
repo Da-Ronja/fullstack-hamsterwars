@@ -13,7 +13,7 @@ const losers = require('./routes/losers.js')
 // Heroku uses process.env.PORT
 const PORT = process.env.PORT || 1337
 const buildFolder = path.join(__dirname, '../build')
-// const staticFolder2 = path.join(__dirname, './hamsterImg')
+const staticFolder2 = path.join(__dirname, 'hamsterImg')
 
 // Middleware
 // Logger - skriv ut info om inkommande request
@@ -25,7 +25,7 @@ app.use(express.json())
 app.use(cors())   // Cross-Origin Resource Sharing
 app.use(express.static(buildFolder))
 
-app.use('/hamsterImg', express.static(path.join(__dirname, 'hamsterImg')));
+app.use('/hamsterImg', express.static(staticFolder2))
 
 
 // Routes
