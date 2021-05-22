@@ -1,6 +1,7 @@
 //TODO
 //[ ]	CSS
-//[ ]	GET två randomHamster
+//[ ]	Fetch två randomHamster
+//[ ] if-sats inte samma hamster
 //[ ]	Hamster-obj ska visa bild och info om hamstern
 //[ ]	Clickfunktion för hamsterobjekt 
 //[ ]	Uppdatera respektiv hamsterobjekt (PUT-req)
