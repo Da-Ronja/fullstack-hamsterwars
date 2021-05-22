@@ -1,5 +1,7 @@
 //TODO
 //[ ]	Css gid
+//[ ] Show hamsterName when hovoring over img 
+//https://stackoverflow.com/questions/14263594/how-to-show-text-on-image-when-hovering
 //[ ]	Formulär för att skapa ny hamster
 //[ ]	Tabort hamster
 import { Link } from "react-router-dom"
@@ -9,8 +11,6 @@ import useFetch from "../useFetch";
 const Gallery = () => {
 
 	const { data: hamsters, isLoaded, error } = useFetch('http://localhost:1357/hamsters')
-
-	console.log('data bd:', hamsters)
 
 
 	// PAINATION
