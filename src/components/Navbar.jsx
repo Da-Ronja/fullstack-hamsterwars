@@ -6,6 +6,7 @@ import { BrowserRouter as Link, NavLink } from 'react-router-dom';
 const Navbar = () => {
 	return (
 		<nav>
+			<Link to="/a">. </Link>
 			<NavLink to="/">Home </NavLink>
 			<NavLink to="/battle"> Battle </NavLink>
 			<NavLink to="/gallery"> Gallery</NavLink>

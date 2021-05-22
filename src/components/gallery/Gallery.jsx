@@ -7,6 +7,7 @@
 import { Link } from "react-router-dom"
 import React, { useState } from 'react';
 import useFetch from "../useFetch";
+import UploadNewHamster from "./UploadNewHamster";
 
 const Gallery = () => {
 
@@ -18,10 +19,10 @@ const Gallery = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const displayPage = hamsters.slice(currentPage, currentPage + hamsterPerPage)
-	console.log(displayPage, 'displayPage');
+	//console.log(displayPage, 'displayPage');
 
 	let maxPage = Math.ceil(hamsters.length / hamsterPerPage)
-	console.log(maxPage, 'maxPage ');
+	//console.log(maxPage, 'maxPage ');
 
 	function nextPage() {
 		setCurrentPage((currentPage) => Math.min(currentPage + 1, maxPage))
@@ -56,6 +57,8 @@ const Gallery = () => {
 				<button onClick={prevPage}>Prev</button>
 				<button onClick={nextPage}>Next</button>
 			</>}
+
+			<UploadNewHamster />
 
 		</div>
 	)

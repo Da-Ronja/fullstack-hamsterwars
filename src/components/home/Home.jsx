@@ -1,6 +1,6 @@
 //TODO
 //[ ]	Css
-//[ ]	förklara hur man använder appen
+//REVIEW	förklara hur man använder appen
 //[ ]	användarvänligt felmeddelande
 
 const Home = () => {
