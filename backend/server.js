@@ -11,7 +11,7 @@ const losers = require('./routes/losers.js')
 
 // Settings
 // Heroku uses process.env.PORT
-const PORT = process.env.PORT || 1337
+const PORT = process.env.PORT || 1357
 const buildFolder = path.join(__dirname, '../build')
 const staticFolder2 = path.join(__dirname, 'assets')
 

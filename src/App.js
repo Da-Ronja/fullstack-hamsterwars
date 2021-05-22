@@ -1,52 +1,59 @@
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css';
+import Navbar from './components/Navbar';
 import Gallery from './components/gallery/Gallery'
+import HamsterCard from './components/gallery/HamsterCard'
 import Battle from './components/battle/Battle'
 import Home from './components/home/Home'
 
 //TODO
 //[ ]	Css
-//[ ]	En egen nav component
+//[x]	En egen nav component
 //QUESTION ska React Router-länkana bo här eller startsidan
 
 
 function App() {
+
+	function Status({ code, children }) {
+		return (
+			<Route
+				render={({ staticContext }) => {
+					if (staticContext) staticContext.status = code;
+					return children;
+				}}
+			/>
+		);
+	}
+
+	function NotFound() {
+		return (
+			<Status code={404}>
+				<div>
+					<h1>Sorry, the page dosen't exist.</h1>
+				</div>
+			</Status>
+		);
+	}
+
 	return (
-		<div className="App">
-			<Router>
+		<Router>
+			<div className="App">
 				<header className="App-header">
-					<nav>
-						<ul>
-							<li>
-								<Link to="/">Home</Link>
-							</li>
-							<li>
-								<Link to="/battle">Battle</Link>
-							</li>
-							<li>
-								<Link to="/gallery">Gallery</Link>
-							</li>
-						</ul>
-					</nav>
+					<Navbar />
 				</header>
 
 				<main>
-
 					<Switch>
-						<Route path="/gallery">
-							<Gallery />
-						</Route>
-						<Route path="/battle">
-							<Battle />
-						</Route>
-						<Route path="/">
-							<Home />
-						</Route>
+						<Route path="/gallery" component={Gallery} />
+						<Route path="/HamsterCard/:id" component={HamsterCard} />
+						<Route path="/battle" component={Battle} />
+						<Route exact path="/" component={Home} />
+						<Route component={NotFound} />
 					</Switch>
-
 				</main>
-			</Router>
-		</div>
+			</div>
+		</Router>
 	);
 }
 
