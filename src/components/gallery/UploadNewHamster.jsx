@@ -1,14 +1,14 @@
 // [ ] Upload img with validation
-// [ ] fetch POST request
 // [ ] css + css för att förtydliga inputfälten
 // [ ] tydliga felmedelanden vid fel inmatning
 // [ ] validering av siffror så att den inte kan gå under 0
+// [ ] Validerinf av fetch POST request
 
 //QUESTION onSubmit on button or on  form
 //QUESTION Till Sara Ska det vara input= text eller textarea??
 
 import { useState } from "react"
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 
 const UploadNewHamster = () => {
 
@@ -16,7 +16,7 @@ const UploadNewHamster = () => {
 	const [age, setAge] = useState(0)
 	const [favFood, setFavFood] = useState('')
 	const [loves, setLoves] = useState('')
-	const history = useHistory()
+	//const history = useHistory()
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
@@ -28,19 +28,24 @@ const UploadNewHamster = () => {
 			loves,
 			wins: 0,
 			defeats: 0,
-			games: 0
+			games: 0,
+			imgName: "test.jpg"
 		};
 
+		fetch('http://localhost:1357/hamsters/', {
+			method: "POST",
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(newHamster)
+		}).then(() => {
+			console.log('new hamster');
+		})
 		console.log(newHamster)
-		history.go(-1)
 	}
 
 	const validateAgeInput = (event) => {
 		console.log(event.target.value);
 		//NOTE validateAge
 	}
-
-
 
 	return (
 		<div>
@@ -80,6 +85,7 @@ const UploadNewHamster = () => {
 			<p> {name} </p>
 			<p> {age} </p>
 			<p> {favFood} </p>
+
 		</div>
 	)
 }
