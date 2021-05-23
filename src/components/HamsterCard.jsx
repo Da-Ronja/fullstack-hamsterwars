@@ -14,6 +14,7 @@ const HamsterCard = (props) => {
 	const urlImg = '/assets/'
 
 
+
 	return (
 		<article>
 			<h2>{name}</h2>
@@ -24,8 +25,6 @@ const HamsterCard = (props) => {
 			<p>{defeats}</p>
 			<p>{games}</p>
 			<img src={urlImg + imgName} alt={name} />
-			{/* 
-			<button>Delete Hamster</button> */}
 		</article>
 	)
 }

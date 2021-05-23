@@ -1,9 +1,10 @@
 //TODO
 //[ ]	Css gid
-//[ ] Show hamsterName when hovoring over img 
-//https://stackoverflow.com/questions/14263594/how-to-show-text-on-image-when-hovering
 //[ ]	Formulär för att skapa ny hamster
 //[ ]	Tabort hamster
+//IDEA Show hamsterName when hovoring over img
+//https://stackoverflow.com/questions/14263594/how-to-show-text-on-image-when-hovering
+
 //QUESTION hur gör jag för att spara vart i arryen jag är för att gå tillbacka från HamsteCard
 import { Link } from "react-router-dom"
 import React, { useState } from 'react';
@@ -14,7 +15,7 @@ import HamsterCard from "../HamsterCard";
 const Gallery = () => {
 
 	const { data: hamsters, isLoaded, error } = useFetch('http://localhost:1357/hamsters')
-
+	//console.log(hamsters);
 
 	// PAINATION
 	const hamsterPerPage = 3

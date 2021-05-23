@@ -1,9 +1,9 @@
-//[ ] Create error message to display to 
+//[ ] Create error message to display to  and for two of the same
 import { useState, useEffect } from 'react';
 
 const useFetch = () => {
-	const [hamsterOne, setHamsterOne] = useState([]);
-	const [hamsterTwo, setHamsterTwo] = useState([]);
+	const [hamsterOne, setHamsterOne] = useState({});
+	const [hamsterTwo, setHamsterTwo] = useState({});
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [error, setError] = useState(null);
 
@@ -27,7 +27,7 @@ const useFetch = () => {
 
 				} else {
 					setHamsterOne(resultOme)
-					setHamsterTwo(resultTwo);
+					setHamsterTwo(resultTwo)
 				}
 			} catch (error) {
 				setIsLoaded(false);
@@ -37,6 +37,7 @@ const useFetch = () => {
 		};
 		fetchRandomHamster();
 	}, []);
+	//console.log(hamsterTwo, hamsterOne);
 	return { hamsterOne, hamsterTwo, isLoaded, error }
 }
 

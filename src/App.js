@@ -9,7 +9,6 @@ import Home from './components/home/Home'
 
 //TODO
 //[ ]	Css
-//[x]	En egen nav component
 //QUESTION ska React Router-länkana bo här eller startsidan
 
 
