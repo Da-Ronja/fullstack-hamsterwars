@@ -1,8 +1,14 @@
 // [ ] Upload img with validation
 // [ ] fetch POST request
+// [ ] css + css för att förtydliga inputfälten
+// [ ] tydliga felmedelanden vid fel inmatning
+// [ ] validering av siffror så att den inte kan gå under 0
 
 //QUESTION onSubmit on button or on  form
+//QUESTION Till Sara Ska det vara input= text eller textarea??
+
 import { useState } from "react"
+import { useHistory } from 'react-router-dom'
 
 const UploadNewHamster = () => {
 
@@ -10,6 +16,7 @@ const UploadNewHamster = () => {
 	const [age, setAge] = useState(0)
 	const [favFood, setFavFood] = useState('')
 	const [loves, setLoves] = useState('')
+	const history = useHistory()
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
@@ -25,6 +32,12 @@ const UploadNewHamster = () => {
 		};
 
 		console.log(newHamster)
+		history.go(-1)
+	}
+
+	const validateAgeInput = (event) => {
+		console.log(event.target.value);
+		//NOTE validateAge
 	}
 
 
@@ -44,6 +57,7 @@ const UploadNewHamster = () => {
 				<input
 					type="number"
 					required
+					onBlur={event => validateAgeInput(event)}
 					value={age}
 					onChange={(event) => setAge(event.target.value)}
 				/>

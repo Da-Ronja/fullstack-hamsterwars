@@ -1,4 +1,5 @@
-//[ ] Create error message to display to Users
+//[ ] Create error message to display to
+//[ ] ändra till vanilig fetch inte hook
 import { useState, useEffect } from 'react';
 
 const useFetch = (url) => {

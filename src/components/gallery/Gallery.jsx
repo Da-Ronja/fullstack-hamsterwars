@@ -4,10 +4,12 @@
 //https://stackoverflow.com/questions/14263594/how-to-show-text-on-image-when-hovering
 //[ ]	Formulär för att skapa ny hamster
 //[ ]	Tabort hamster
+//QUESTION hur gör jag för att spara vart i arryen jag är för att gå tillbacka från HamsteCard
 import { Link } from "react-router-dom"
 import React, { useState } from 'react';
 import useFetch from "../useFetch";
 import UploadNewHamster from "./UploadNewHamster";
+import HamsterCard from "../HamsterCard";
 
 const Gallery = () => {
 
@@ -35,11 +37,14 @@ const Gallery = () => {
 
 	// Hamster-object List
 	//FIXME get img to work
-	const renderHamsters = displayPage.map(hamster => (
-		<li key={hamster.id}>
-			<Link to={`/hamsterCard/${hamster.id}`}>
-				<p>{`Name: ${hamster.name}`}</p>
-				<img src={`/assets/${hamster.imgName}`} alt={hamster.name} />
+	const renderHamsters = displayPage.map(hamsters => (
+		<li key={hamsters.id}>
+			<Link to={`/HamsterProfile/${hamsters.id}`}>
+				<HamsterCard
+					imgName={hamsters.imgName}
+					name={`Name: ${hamsters.name}`}
+				/>
+
 			</Link>
 		</li>
 	))

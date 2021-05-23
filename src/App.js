@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar';
 import Gallery from './components/gallery/Gallery'
-import HamsterCard from './components/gallery/HamsterCard'
+import HamsterProfile from './components/gallery/HamsterProfile'
 import Battle from './components/battle/Battle'
 import Home from './components/home/Home'
 
@@ -46,7 +46,7 @@ function App() {
 				<main>
 					<Switch>
 						<Route path="/gallery" component={Gallery} />
-						<Route path="/HamsterCard/:id" component={HamsterCard} />
+						<Route path="/HamsterProfile/:id" component={HamsterProfile} />
 						<Route path="/battle" component={Battle} />
 						<Route exact path="/" component={Home} />
 						<Route component={NotFound} />
