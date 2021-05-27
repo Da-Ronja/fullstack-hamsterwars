@@ -8,10 +8,7 @@ import Battle from './components/battle/Battle'
 import Home from './components/home/Home'
 
 //TODO
-//[ ]	Css
-//QUESTION ska React Router-länkana bo här eller startsidan
-
-
+//[ ] bättre Felmeddelande
 function App() {
 
 	function Status({ code, children }) {

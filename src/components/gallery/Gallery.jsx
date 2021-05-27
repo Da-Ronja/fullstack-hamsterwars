@@ -1,11 +1,14 @@
 //TODO
-//[ ]	Css gid
-//[ ]	Formulär för att skapa ny hamster
+//[ ]	Css gird
+//[ ]	Formulär popar upp efyter knapptryck
 //[ ]	Tabort hamster
 //IDEA Show hamsterName when hovoring over img
+//BUG Uppladdade hamstrar visas inte bara ibland
+//FIXME
 //https://stackoverflow.com/questions/14263594/how-to-show-text-on-image-when-hovering
 
 //QUESTION hur gör jag för att spara vart i arryen jag är för att gå tillbacka från HamsteCard
+
 import { Link } from "react-router-dom"
 import React, { useState } from 'react';
 import useFetch from "../useFetch";
@@ -14,18 +17,18 @@ import HamsterCard from "../HamsterCard";
 
 const Gallery = () => {
 
-	const { data: hamsters, isLoaded, error } = useFetch('http://localhost:1357/hamsters')
-	//console.log(hamsters);
+	const { data: hamsters, isLoaded, error } = useFetch('/hamsters')
+	console.log(hamsters);
 
 	// PAINATION
 	const hamsterPerPage = 3
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const displayPage = hamsters.slice(currentPage, currentPage + hamsterPerPage)
-	//console.log(displayPage, 'displayPage');
+	//	console.log(displayPage, 'displayPage');
 
 	let maxPage = Math.ceil(hamsters.length / hamsterPerPage)
-	//console.log(maxPage, 'maxPage ');
+	console.log(maxPage, 'maxPage ');
 
 	function nextPage() {
 		setCurrentPage((currentPage) => Math.min(currentPage + 1, maxPage))
@@ -34,10 +37,9 @@ const Gallery = () => {
 	const prevPage = () => {
 		setCurrentPage((currentPage) => Math.max(currentPage - 1, 1));
 	}
-
+	console.log(currentPage, 'currentPage ');
 
 	// Hamster-object List
-	//FIXME get img to work
 	const renderHamsters = displayPage.map(hamsters => (
 		<li key={hamsters.id}>
 			<Link to={`/HamsterProfile/${hamsters.id}`}>
@@ -56,10 +58,10 @@ const Gallery = () => {
 			<h1>All hamsters</h1>
 
 			{ isLoaded ? <p>Loading...</p> : <>
-				<h2>Hamster Data</h2>
-				{error && <div>{error}</div>}
-				{renderHamsters}
-
+				<article className="gallery-grid">
+					{error && <div>{error}</div>}
+					{renderHamsters}
+				</article>
 				<button onClick={prevPage}>Prev</button>
 				<button onClick={nextPage}>Next</button>
 			</>}

@@ -1,6 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	
 }
 .App {
   text-align: center;
@@ -21,7 +22,7 @@
   color: #61dafb;
 }
 img {
-	height: 33px;
-	width: 33px;
-	object-fit: cover;
+	height: 15rem;
+    width: 15rem;
+    object-fit: cover;
 }

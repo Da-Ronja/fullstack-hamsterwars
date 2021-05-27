@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 const path = require('path')
 
-const hamstersRoute = require('./routes/hamsters.js')
+const hamsters = require('./routes/hamsters.js')
 const matches = require('./routes/matches.js')
 const matchWinners = require('./routes/matchWinners.js')
 const winners = require('./routes/winners.js')
@@ -24,7 +24,6 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use(cors())   // Cross-Origin Resource Sharing
 app.use(express.static(buildFolder))
-
 app.use('/assets', express.static(staticFolder2))
 
 // Routes
@@ -35,7 +34,7 @@ app.get('/', (req, res) => {
 
 // REST API for /hamsters
 //app.use('/hamsters', hamsters)
-app.use('/hamsters', hamstersRoute);
+app.use('/hamsters', hamsters);
 app.use('/matches', matches)
 app.use('/matchWinners', matchWinners)
 app.use('/winners', winners)

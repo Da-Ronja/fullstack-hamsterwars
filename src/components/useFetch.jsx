@@ -12,7 +12,7 @@ const useFetch = (url) => {
 		const fetchData = async () => {
 			try {
 				setIsLoaded(true);
-				const response = await fetch(url);
+				const response = await fetch('/hamsters', { method: 'GET' });
 				const result = await response.json();
 
 				setIsLoaded(false);

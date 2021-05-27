@@ -9,21 +9,20 @@ const useFetch = () => {
 
 	//On params changes
 	useEffect(() => {
-		const urlRandom = 'http://localhost:1357/hamsters/random'
 		const fetchRandomHamster = async () => {
 			try {
 				setIsLoaded(true);
-				const responseOne = await fetch(urlRandom);
+				const responseOne = await fetch('/hamsters/random', { method: 'GET' });
 				const resultOme = await responseOne.json();
 
-				const responseTwo = await fetch(urlRandom);
+				const responseTwo = await fetch('/hamsters/random', { method: 'GET' });
 				const resultTwo = await responseTwo.json();
 
 				setIsLoaded(false);
 
 				if (resultOme.id === resultTwo.id) {
 					console.log("Two of the same!")
-					// 	newGame ? setNewGame(false) : setNewGame(true);
+					newGame ? setNewGame(false) : setNewGame(true);
 
 				} else {
 					setHamsterOne(resultOme)

@@ -1,5 +1,6 @@
 //[ ] Lägg till statestik för vilka hamstar den besegrat.
 //[ ] Ändra gå tillbacka.
+//[ ] If no hamsterID exist show error massage
 //QUESTION Edit Hamster?
 
 import { useParams } from "react-router"
