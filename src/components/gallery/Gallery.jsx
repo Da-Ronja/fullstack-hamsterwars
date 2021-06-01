@@ -1,43 +1,47 @@
 //TODO
-//[ ]	Css gird
-//[ ]	Formulär popar upp efyter knapptryck
-//[ ]	Tabort hamster
 //IDEA Show hamsterName when hovoring over img
-//BUG Uppladdade hamstrar visas inte bara ibland
-//FIXME
 //https://stackoverflow.com/questions/14263594/how-to-show-text-on-image-when-hovering
-
-//QUESTION hur gör jag för att spara vart i arryen jag är för att gå tillbacka från HamsteCard
 
 import { Link } from "react-router-dom"
 import React, { useState } from 'react';
 import useFetch from "../useFetch";
-import UploadNewHamster from "./UploadNewHamster";
 import HamsterCard from "../HamsterCard";
+import ModalForms from "../ModalForms";
+import "./gallery.css"
 
 const Gallery = () => {
-
+	const hamsterPerPage = 3
+	const [currentPage, setCurrentPage] = useState(0);
+	const [data, setData] = useState(3);
+	const [isShowing, setIsShowing] = useState(false);
 	const { data: hamsters, isLoaded, error } = useFetch('/hamsters')
-	console.log(hamsters);
+	//console.log(hamsters);
+
+	function toggle() {
+		setIsShowing(!isShowing);
+	}
 
 	// PAINATION
-	const hamsterPerPage = 3
-	const [currentPage, setCurrentPage] = useState(1);
-
 	const displayPage = hamsters.slice(currentPage, currentPage + hamsterPerPage)
-	//	console.log(displayPage, 'displayPage');
+	// console.log(displayPage, 'displayPage');
 
-	let maxPage = Math.ceil(hamsters.length / hamsterPerPage)
-	console.log(maxPage, 'maxPage ');
+	// let maxPage = Math.ceil(hamsters.length / hamsterPerPage)
+	// console.log(maxPage, 'maxPage ');
 
 	function nextPage() {
-		setCurrentPage((currentPage) => Math.min(currentPage + 1, maxPage))
+		if (currentPage < hamsters.length - 1) {
+			setData(data + 1)
+			setCurrentPage(currentPage => currentPage + hamsterPerPage)
+		}
 	}
 
 	const prevPage = () => {
-		setCurrentPage((currentPage) => Math.max(currentPage - 1, 1));
+		if (currentPage > 1) {
+			console.log('prevPage right');
+			setCurrentPage(currentPage => currentPage - hamsterPerPage)
+		}
 	}
-	console.log(currentPage, 'currentPage ');
+	// console.log(currentPage, 'currentPage ');
 
 	// Hamster-object List
 	const renderHamsters = displayPage.map(hamsters => (
@@ -47,26 +51,29 @@ const Gallery = () => {
 					imgName={hamsters.imgName}
 					name={`Name: ${hamsters.name}`}
 				/>
-
 			</Link>
 		</li>
 	))
 
 
 	return (
-		<div className="content">
+		<div className="Gallery">
 			<h1>All hamsters</h1>
+
+			<button className="button-default" onClick={toggle}>Add new Hamster</button>
+			<ModalForms
+				isShowing={isShowing}
+				hide={toggle}
+			/>
 
 			{ isLoaded ? <p>Loading...</p> : <>
 				<article className="gallery-grid">
 					{error && <div>{error}</div>}
-					{renderHamsters}
+					<ul>{renderHamsters}</ul>
 				</article>
 				<button onClick={prevPage}>Prev</button>
 				<button onClick={nextPage}>Next</button>
 			</>}
-
-			<UploadNewHamster />
 
 		</div>
 	)

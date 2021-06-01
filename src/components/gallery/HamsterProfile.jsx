@@ -10,7 +10,7 @@ import useFetch from "../useFetch";
 const HamsterProfile = () => {
 
 	const { id } = useParams();
-	const urlHamesteById = 'http://localhost:1357/hamsters/' + id
+	const urlHamesteById = '/hamsters/' + id
 	const { data: hamster, isLoaded, error } = useFetch(urlHamesteById)
 	console.log(hamster.id)
 	const history = useHistory()
@@ -20,12 +20,12 @@ const HamsterProfile = () => {
 	}
 
 	// Delete Hamster
-	//QUESTION hur får man även bort bilden
+	// [ ] öra om till rätt fetch
 	const deleteHamster = (id) => {
 		console.log('Delete hamster', id)
 		if ((window.confirm("Delete the item?"))) {
 			console.log('throw the hamster away')
-			fetch('http://localhost:1357/hamsters/' + id, {
+			fetch('/hamsters/' + id, {
 				method: "DELETE"
 			}).then(() => {
 				history.push('/');
@@ -36,13 +36,13 @@ const HamsterProfile = () => {
 	}
 
 	return (
-		<div>
+		<div className="hamster-profile">
 			{ isLoaded ? <p>Loading...</p> : <>
 				<h2>Hamster Data</h2>
 				<button onClick={goBack}>Go Back</button>
 				{error && <div>{error}</div>}
 				{hamster && (
-					<article>
+					<article className="hamster-profile-card">
 						<img src={`/assets/${hamster.imgName}`} alt={hamster.name} />
 						<h2>{`Name: ${hamster.name}`}</h2>
 						<p>{`Age: ${hamster.age}`}</p>

@@ -1,5 +1,6 @@
 //[ ] Create error message to display to
-//[ ] ändra till vanilig fetch inte hook
+//[ ] ändra till vanilig fetch inte hook?
+//[ ] if-sats om hamster id inte finns felmeddelande
 import { useState, useEffect } from 'react';
 
 const useFetch = (url) => {
@@ -12,7 +13,7 @@ const useFetch = (url) => {
 		const fetchData = async () => {
 			try {
 				setIsLoaded(true);
-				const response = await fetch('/hamsters', { method: 'GET' });
+				const response = await fetch(url, { method: 'GET' });
 				const result = await response.json();
 
 				setIsLoaded(false);

@@ -1,0 +1,23 @@
+.contestants {
+	display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+/* .contestants .hamster-card {
+	width: 20rem;
+    height: auto;
+    font-size: 1.5rem;
+	    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contestants img {
+	background-color: cornflowerblue;
+}
+
+.contestants .card-details {
+	background-color: #fdfbfb;;
+
+  } */

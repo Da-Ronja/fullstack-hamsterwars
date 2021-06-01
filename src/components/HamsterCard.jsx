@@ -16,15 +16,17 @@ const HamsterCard = (props) => {
 
 
 	return (
-		<article>
+		<article className="hamster-card">
 			<h2>{name}</h2>
 			<img src={urlImg + imgName} alt={name} />
-			<p>{age}</p>
-			<p>{favFood}</p>
-			<p>{loves}</p>
-			<p>{wins}</p>
-			<p>{defeats}</p>
-			<p>{games}</p>
+			<div className="card-details">
+				<p>{age}</p>
+				<p>{favFood}</p>
+				<p>{loves}</p>
+				<p>{wins}</p>
+				<p>{defeats}</p>
+				<p>{games}</p>
+			</div>
 		</article>
 	)
 }

@@ -1,4 +1,4 @@
-//[ ] Create error message to display to  and for two of the same
+//[ ] Create error message to display
 import { useState, useEffect } from 'react';
 
 const useFetch = () => {

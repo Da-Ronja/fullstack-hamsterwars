@@ -4,14 +4,20 @@
 	
 }
 .App {
-  text-align: center;
+	min-height: 100vh;
+	width: 100vw;
+  	text-align: center;
+    background-color: lightskyblue;
 }
-
-
 .App-header {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
+	display: grid;
+	grid-template-columns: 50% 50%;;
+	grid-template-rows: 80% 20%;
+	height: 20vh;
+	background-color: blueviolet;
+	background-image: url("header-background.png");
+    background-repeat: no-repeat;
+    background-size: 100% 90%;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -21,8 +27,87 @@
 .App-link {
   color: #61dafb;
 }
+/* .App-main{
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+} */
+.hamster-logo{
+  	grid-row: 1 / span 2;;
+	grid-column: 1 / 2;
+	justify-self: center;
+    max-width: 100%;
+    height: auto;
+    margin-left: 10%;
+    max-height: 90%;
+}
+.nav-bar {
+	grid-column: 1 / span 2;
+  	grid-row: 2;
+    justify-self: center;
+}
+.nav-bar a {
+	border: 2px solid black;
+    padding: 4px 8px;
+    background-color: #ffff;
+    border-radius: 30px;
+
+}
+
 img {
 	height: 15rem;
     width: 15rem;
     object-fit: cover;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .5;
+}
+
+.modal-wrapper {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal {
+
+  z-index: 100;
+  background: white;
+  position: relative;
+  border-radius: 3px;
+min-width: 70vw;
+  padding: 2rem;
+  align-self: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-close-button {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  opacity: .3;
+  cursor: pointer;
+  border: none;
 }

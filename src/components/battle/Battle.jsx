@@ -1,21 +1,30 @@
 //TODO
-//[ ] 	Visa resultat
-// //[ ]	Initiera nästa match
+// [ ] 	Spara resultaten.
+// [x] Visa hur många vinster och förluster respektive hamster har efter match omgång.
+
 
 import { useState, useEffect } from 'react';
 import HamsterCard from "../HamsterCard";
+import ModalWinner from "./ModalWinner";
+import "./battle.css"
 
 
 const Battle = () => {
 
-	const [hamsterOne, setHamsterOne] = useState({});
-	const [hamsterTwo, setHamsterTwo] = useState({});
+	const [hamsterOne, setHamsterOne] = useState([]);
+	const [hamsterTwo, setHamsterTwo] = useState([]);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [error, setError] = useState(null);
 	const [newGame, setNewGame] = useState(true);
-	const [hamsterWins, setHamsterWins] = useState({});
-	//console.log(hamsterOne.id, hamsterOne.name);
-	//console.log(hamsterTwo.id, hamsterTwo.name);
+	const [isShowing, setIsShowing] = useState(false);
+	const [hamsterWins, setHamsterWins] = useState([]);
+	const [hamsterLoser, setHamsterLoser] = useState([]);
+	console.log(hamsterOne.id, hamsterOne.name);
+	console.log(hamsterTwo.id, hamsterTwo.name);
+
+	function toggle() {
+		setIsShowing(!isShowing);
+	}
 
 
 	useEffect(() => {
@@ -53,19 +62,25 @@ const Battle = () => {
 		if (winner && loser) {
 			const winnerUpdate = {
 				wins: winner.wins + 1,
-				games: loser.games + 1
+				games: winner.games + 1
 			}
 			const loserUpdate = {
 				defeats: loser.defeats + 1,
 				games: loser.games + 1
 			}
 
-			console.log('Winner', winner.name, winner.id, winnerUpdate,);
-			console.log('Loser', loser.name, loser.id, loserUpdate);
+			// console.log('Winner', winner.name, winner.id, winnerUpdate,);
+			// console.log('Loser', loser.name, loser.id, loserUpdate);
+
 			setHamsterWins(winner)
+			setHamsterLoser(loser)
+			// toggle(isShowing, winner.id)
 			updateHamster(winner.id, winnerUpdate);
 			updateHamster(loser.id, loserUpdate);
 			newMatchPost(winner.id, loser.id);
+			toggle(isShowing)
+			setNewGame(!newGame)
+
 		}
 	}
 
@@ -77,8 +92,8 @@ const Battle = () => {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(upDate)
 			});
-			const hamsterData = await response.text();
-			console.log(hamsterData);
+			const hamsterData = await response.json();
+			console.log('hej', hamsterData);
 
 		} catch (error) {
 			return error.message;
@@ -98,8 +113,8 @@ const Battle = () => {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(newMatch)
 			});
-			const matchData = await response.text();
-			console.log(matchData);
+			const matchData = await response.json();
+			console.log('då', matchData);
 
 		} catch (error) {
 			return error.message;
@@ -111,10 +126,9 @@ const Battle = () => {
 			<h1> Battle </h1>
 			{ isLoaded ? <p>Loading...</p> : <>
 				{error && <div>{error}</div>}
-				<article className="heje">
+				<article className="contestants">
 
-					<div>
-
+					<div className="battle-card">
 						<HamsterCard
 							imgName={hamsterOne.imgName}
 							name={`Name: ${hamsterOne.name}`}
@@ -140,22 +154,16 @@ const Battle = () => {
 							Pick {hamsterTwo.name}
 						</button>
 					</div>
+
 				</article>
 
 			</>}
-			<article className="heje">
-
-				<div>
-					<HamsterCard
-						imgName={hamsterWins.imgName}
-						name={`Name: ${hamsterWins.name}`}
-						age={`Age: ${hamsterWins.age}`}
-						favFood={`Favorit Food: ${hamsterWins.favFood}`}
-						loves={`Loves: ${hamsterWins.loves}`}
-					/>
-				</div>
-
-			</article>
+			<ModalWinner
+				isShowing={isShowing}
+				hide={toggle}
+				hamsterWins={hamsterWins}
+				hamsterLoser={hamsterLoser}
+			/>
 
 			<button onClick={() => setNewGame(!newGame)}>Two New Hamsters</button>
 		</div>
