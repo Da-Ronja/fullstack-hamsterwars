@@ -1,7 +1,6 @@
 //TODO
 // [ ] 	Vg del spara data för matcher 
 
-
 import { useState, useEffect } from 'react';
 import HamsterCard from "../../components/HamsterCard";
 import ModalWinner from "../modalViews/ModalWinner";
@@ -173,17 +172,18 @@ const Battle = () => {
 		<div className="main-container">
 			<h1> Battle </h1>
 
-			{isLoaded ? <p>Loading...</p> : <>
+			{/* {isLoaded ? <p>Loading...</p> : <>
 
 				{error &&
 					<div className="error-message">
 						<p>{error}</p>
 						<button onClick={() => setNewGame(!newGame)}>Reload page</button>
 					</div>
-				}
-				<article className="flex-content">
+				} */}
+			<article className="flex-content flex-content-space">
 
-					<div className="battle-card">
+				<div className="battle-card">
+					<div onClick={() => handleClick(hamsterOne, hamsterTwo)}>
 						<HamsterCard
 							imgName={hamsterOne.imgName}
 							name={`Name: ${hamsterOne.name}`}
@@ -191,11 +191,15 @@ const Battle = () => {
 							favFood={`Favorit Food: ${hamsterOne.favFood}`}
 							loves={`Loves: ${hamsterOne.loves}`}
 						/>
-						<button onClick={() => handleClick(hamsterOne, hamsterTwo)}>
-							Pick {hamsterOne.name}
-						</button>
 					</div>
+					{/* <button onClick={() => handleClick(hamsterOne, hamsterTwo)}>
+						Pick {hamsterOne.name}
+					</button> */}
+				</div>
 
+				<div onClick={() => handleClick(
+					hamsterTwo, hamsterOne
+				)}>
 					<div className="battle-card">
 						<HamsterCard
 							imgName={hamsterTwo.imgName}
@@ -204,14 +208,15 @@ const Battle = () => {
 							favFood={`Favorit Food: ${hamsterTwo.favFood}`}
 							loves={`Loves: ${hamsterTwo.loves}`}
 						/>
-						<button onClick={() => handleClick(
-							hamsterTwo, hamsterOne
-						)}>
-							Pick {hamsterTwo.name}
-						</button>
 					</div>
-				</article>
-			</>}
+					{/* <button onClick={() => handleClick(
+						hamsterTwo, hamsterOne
+					)}>
+						Pick {hamsterTwo.name}
+					</button> */}
+				</div>
+			</article>
+			{/* </>} */}
 			<button onClick={() => setNewGame(!newGame)}>Two New Hamsters</button>
 
 

@@ -1,9 +1,10 @@
-//[ ] VG del Lägg till statestik för vilka hamstar den besegrat.
 //[ ] If no hamsterID exist show error massage
 
 import { useParams } from "react-router"
 import { useHistory } from 'react-router-dom'
 import useFetch from "../useFetch";
+
+import HamsterImg from '../../assets/img/hamster-default-3.jpg'
 
 const HamsterProfile = () => {
 
@@ -45,6 +46,42 @@ const HamsterProfile = () => {
 
 	return (
 		<div className="main-container">
+
+			<h2>{`Name: ${hamster.name}`}</h2>
+			<button onClick={goBack}>Go Back</button>
+
+			<div className="hamster-profile-card">
+				<img
+					src={HamsterImg}
+					alt={hamster.name}
+				/>
+				<div>
+					<p>{`Age: ${hamster.age}`}</p>
+					<p>{`Favorit Food: ${hamster.favFood}`}</p>
+					<p>{`Loves: ${hamster.loves}`}</p>
+					<p>{`Wins: ${hamster.wins}`}</p>
+					<p>{`Defeats: ${hamster.defeats}`}</p>
+					<p>{`Games: ${hamster.games}`}</p>
+				</div>
+				<div>
+					<h3>Has killed with cutness</h3>
+					<ol>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+					</ol>
+				</div>
+			</div>
+
+
+
+
+
+			{/* 
 			{ isLoaded ? <p>Loading...</p> : <>
 				<h2>Hamster Data</h2>
 				<button onClick={goBack}>Go Back</button>
@@ -75,7 +112,7 @@ const HamsterProfile = () => {
 			</>}
 			<div>
 
-			</div>
+			</div> */}
 		</div >
 	)
 }

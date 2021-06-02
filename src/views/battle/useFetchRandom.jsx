@@ -1,4 +1,3 @@
-//[ ] Create error message to display
 import { useState, useEffect } from 'react';
 
 const useFetch = () => {

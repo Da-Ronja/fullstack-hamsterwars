@@ -24,19 +24,23 @@
   }
   
   .modal {
-  
     z-index: 100;
     background: white;
     position: relative;
     border-radius: 3px;
-  min-width: 70vw;
+  	min-width: 70vw;
     padding: 2rem;
     align-self: center;
+	text-align: center;
+	display: flex;
+    flex-direction: column;
+	    align-items: center;
   }
   
   .modal-header {
     display: flex;
     justify-content: flex-end;
+	margin-left: auto;
   }
   
   .modal-close-button {
@@ -48,3 +52,18 @@
     cursor: pointer;
     border: none;
   }
+  .modal-hamster-cards {
+	display: flex;
+    inline-size: fit-content;
+    justify-content: center;
+    flex-wrap: wrap;
+	
+  }
+  .modal-hamster-cards  img {
+	height: 8rem;
+	width: 8rem;
+}
+.winner-article .loser-artical {
+	height: 8rem;
+    width: 8vw;
+}

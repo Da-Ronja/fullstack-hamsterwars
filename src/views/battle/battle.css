@@ -1,14 +1,4 @@
-.Battle {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
 
-.battle-card {
-	justify-self: center;
-}
 
 /* .battle-card > .Hamster-card {
    margin: 2em;

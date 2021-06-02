@@ -33,7 +33,8 @@ const ModalWinner = ({ isShowing, hide, hamsterWins, hamsterLoser }) => isShowin
 					<h2>{hamsterWins.name} killed {hamsterLoser.name} with cutness!</h2>
 					<p>{hamsterWins.name} has won {hamsterWins.wins + 1} out of {hamsterWins.games + 1} games and lost {hamsterWins.defeats}.</p>
 					<p>{hamsterWins.id}</p>
-					<div className="modal-hamster-cards">
+
+					<section className="modal-hamster-cards">
 						<div className="winner-article">
 							<HamsterCard
 								imgName={hamsterWins.imgName}
@@ -42,18 +43,23 @@ const ModalWinner = ({ isShowing, hide, hamsterWins, hamsterLoser }) => isShowin
 								Visit {hamsterWins.name}
 							</Link>
 						</div>
+
 						<div className="loser-article">
 							<HamsterCard
 								imgName={hamsterLoser.imgName}
 							/>
-							<p>{hamsterLoser.name} has:</p>
-							<p>lost {hamsterLoser.defeats + 1},</p>
-							<p>won {hamsterLoser.wins},</p>
-							<p>a total of {hamsterLoser.games + 1} games</p>
 							<Link to={`/HamsterProfile/${hamsterLoser.id}`}>
 								Visit {hamsterLoser.name}
 							</Link>
 						</div>
+					</section>
+					<div>
+						<p>{hamsterLoser.name} has:</p>
+						<p>lost {hamsterLoser.defeats + 1},</p>
+						<p>won {hamsterLoser.wins},</p>
+						<p>a total of {hamsterLoser.games + 1} games</p>
+					</div>
+					<div>
 						<button
 							type="button"
 							className="modal-close-button" data-dismiss="modal"

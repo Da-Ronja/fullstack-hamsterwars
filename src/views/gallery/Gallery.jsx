@@ -69,7 +69,27 @@ const Gallery = () => {
 				hide={toggle}
 			/>
 
-			{ isLoaded ? <p>Loading...</p> : <>
+			<article className="gallery-list">
+
+				<div className="grid-content">
+					<HamsterCard
+						imgName
+						name={"Karin"}
+					/>
+					<HamsterCard
+						imgName
+						name={"Karin"}
+					/>
+					<HamsterCard
+						imgName
+						name={"Karin"}
+					/>
+				</div>
+			</article>
+			<button onClick={prevPage}>Prev</button>
+			<button onClick={nextPage}>Next</button>
+
+			{/* { isLoaded ? <p>Loading...</p> : <>
 				<article className="gallery-list">
 					{error &&
 						<div className="error-message">
@@ -83,7 +103,7 @@ const Gallery = () => {
 				</article>
 				<button onClick={prevPage}>Prev</button>
 				<button onClick={nextPage}>Next</button>
-			</>}
+			</>} */}
 		</div>
 	)
 }
