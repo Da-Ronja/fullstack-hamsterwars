@@ -3,14 +3,14 @@ import { NavLink, Route } from 'react-router-dom';
 
 const Navbar = () => {
 	return (
-
-		<nav className="nav-bar">
+		<nav className="navbar">
 			<Route>
 				<NavLink to="/">Home </NavLink>
 				<NavLink to="/battle"> Battle </NavLink>
 				<NavLink to="/gallery"> Gallery</NavLink>
+				<NavLink to="/stats"> Statistic </NavLink>
+				{/* <NavLink to="/historia"> Historia </NavLink> */}
 			</Route>
-			<div className="nav-button"></div>
 		</nav>
 	)
 }

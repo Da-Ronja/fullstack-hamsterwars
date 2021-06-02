@@ -1,5 +1,3 @@
-
-//NOTE Kolla så att allt stämmet med props
 const HamsterCard = (props) => {
 	const name = props.name
 	const imgName = props.imgName
@@ -10,16 +8,13 @@ const HamsterCard = (props) => {
 	const defeats = props.defeats
 	const games = props.games
 
-	// const age = props.age
 	const urlImg = '/assets/'
 
-
-
 	return (
-		<article className="hamster-card">
+		<article className="Hamster-card">
 			<h2>{name}</h2>
 			<img src={urlImg + imgName} alt={name} />
-			<div className="card-details">
+			<div className="Hamster-card-details">
 				<p>{age}</p>
 				<p>{favFood}</p>
 				<p>{loves}</p>

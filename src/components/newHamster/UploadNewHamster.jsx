@@ -4,7 +4,6 @@ import { useState } from "react"
 import './uploadNewHamster.css'
 import { useHistory } from 'react-router-dom';
 
-
 const UploadNewHamster = () => {
 
 	const history = useHistory();
@@ -18,10 +17,9 @@ const UploadNewHamster = () => {
 	const [favFoodTouched, setFavFoodTouched] = useState(false);
 	const [lovesTouched, setLovesTouched] = useState(false);
 
-
 	const [isPending, setIsPending] = useState(false)
+	const [error, setError] = useState(null);
 	// const [newHAmsterId, setNewHAmsterId] = useState(null)
-
 
 	let isValidName = true
 	let nameErrorMessage = "";
@@ -87,11 +85,10 @@ const UploadNewHamster = () => {
 			wins: 0,
 			defeats: 0,
 			games: 0,
-			imgName: "hamster-default-1.png"
+			imgName: "hamster-default-3.jpg"
 		};
 
 		setIsPending(true)
-		//console.log(newHamster);
 
 		try {
 			const response = await fetch('/hamsters/', {
@@ -99,16 +96,31 @@ const UploadNewHamster = () => {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(newHamster)
 			});
+
+			if (!response.ok) {
+				if (response.status === 400) {
+					console.log('400(bad request)')
+					throw Error('It was a bad request. Please try again')
+				}
+				else if (response.status === 404) {
+					console.log('404 (not found)')
+					throw Error('Could not find the data for that resourse. Please try again')
+				}
+				else if (response.status === 500) {
+					console.log('500 (internal server error)')
+					throw Error('Could not POST the data for that resourse.  Please try again')
+				}
+				throw Error('Someting went wrong the error has status code:', response.status)
+			}
 			const formData = await response.json();
+
 			history.push(`/HamsterProfile/${formData.id}`)
-			console.log(formData.id);
-			// console.log(newHamster)
 
 		} catch (error) {
+			setError(error.message)
 			return error.message;
 		}
 	}
-
 
 	return (
 		<div className='form-component'>
@@ -127,7 +139,6 @@ const UploadNewHamster = () => {
 				/>
 				{nameTouched ? <div className="message"> {nameErrorMessage} </div> : null}
 
-
 				<label>Hamsters Age:</label>
 				<input
 					type="text"
@@ -138,7 +149,6 @@ const UploadNewHamster = () => {
 					onBlur={() => setAgeTouched(true)}
 				/>
 				{ageTouched ? <div className="message"> {ageErrorMessage} </div> : null}
-
 
 				<label>Hamsters Favorit Food:</label>
 				<input
@@ -162,9 +172,15 @@ const UploadNewHamster = () => {
 				/>
 				{lovesTouched ? <div className="message"> {lovesErrorMessage} </div> : null}
 
-
 				{!isPending && <button type="submit" disabled={isInvalidForm}>Upload Hamster</button>}
 				{isPending && <button disabled>Uploading Hamster...</button>}
+				{error &&
+					<div>
+						<p>{error}</p>
+						<p>Try refreshing the page or come back later and try again</p>
+						<button onClick={() => window.location.reload(false)}>Reload page</button>
+					</div>
+				}
 			</form>
 		</div>
 	)

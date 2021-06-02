@@ -5,7 +5,7 @@ const Hover = () => {
 
 	const allUrl = '/hamsters/0q37IGAQPbvfI62SIP0A';
 	const [hamster, setHamster] = useState([]);
-	console.log(hamster)
+	//console.log(hamster)
 
 	useEffect(() => {
 		async function fetchData() {

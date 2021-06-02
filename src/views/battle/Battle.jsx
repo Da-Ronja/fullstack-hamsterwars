@@ -1,11 +1,10 @@
 //TODO
-// [ ] 	Spara resultaten.
-// [x] Visa hur många vinster och förluster respektive hamster har efter match omgång.
+// [ ] 	Vg del spara data för matcher 
 
 
 import { useState, useEffect } from 'react';
-import HamsterCard from "../HamsterCard";
-import ModalWinner from "./ModalWinner";
+import HamsterCard from "../../components/HamsterCard";
+import ModalWinner from "../modalViews/ModalWinner";
 import "./battle.css"
 
 
@@ -13,14 +12,16 @@ const Battle = () => {
 
 	const [hamsterOne, setHamsterOne] = useState([]);
 	const [hamsterTwo, setHamsterTwo] = useState([]);
+
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [error, setError] = useState(null);
 	const [newGame, setNewGame] = useState(true);
 	const [isShowing, setIsShowing] = useState(false);
+
 	const [hamsterWins, setHamsterWins] = useState([]);
 	const [hamsterLoser, setHamsterLoser] = useState([]);
-	console.log(hamsterOne.id, hamsterOne.name);
-	console.log(hamsterTwo.id, hamsterTwo.name);
+	// console.log(hamsterOne.id, hamsterOne.name);
+	// console.log(hamsterTwo.id, hamsterTwo.name);
 
 	function toggle() {
 		setIsShowing(!isShowing);
@@ -32,10 +33,19 @@ const Battle = () => {
 			try {
 				setIsLoaded(true);
 				const responseOne = await fetch('/hamsters/random', { method: 'GET' });
-				const resultOme = await responseOne.json();
-
 				const responseTwo = await fetch('/hamsters/random', { method: 'GET' });
+
+				if (!responseOne.ok || !responseTwo.ok) {
+					if (responseOne.status === 500 || responseTwo.status === 500) {
+						console.log('500 (internal server error)')
+						throw Error('Could not fetch the data for that resourse.  Please try again')
+					}
+					throw Error('Oh No! Someting went wrong! The error has to do with status code:', responseOne.status, 'Please try again')
+				}
+
+				const resultOme = await responseOne.json();
 				const resultTwo = await responseTwo.json();
+
 
 				if (resultOme.id === resultTwo.id) {
 					console.log("Two of the same!")
@@ -92,10 +102,28 @@ const Battle = () => {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(upDate)
 			});
+
+			if (!response.ok) {
+				if (response.status === 400) {
+					console.log('400(bad request)')
+					throw Error('It was a bad request. Please try again')
+				}
+				else if (response.status === 404) {
+					console.log('404 (not found)')
+					throw Error('Could not find the data for that resourse. Please try again')
+				}
+				else if (response.status === 500) {
+					console.log('500 (internal server error)')
+					throw Error('Could not POST the data for that resourse.  Please try again')
+				}
+				throw Error('Oh No! Someting went wrong! The error has to do with status code:', response.status, 'Please try again')
+			}
+
 			const hamsterData = await response.json();
 			console.log('hej', hamsterData);
 
 		} catch (error) {
+			setError(error.message)
 			return error.message;
 		}
 	};
@@ -113,20 +141,47 @@ const Battle = () => {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(newMatch)
 			});
+
+			if (!response.ok) {
+				if (response.status === 400) {
+					console.log('400(bad request)')
+					throw Error('It was a bad request. Please try again')
+				}
+				else if (response.status === 404) {
+					console.log('404 (not found)')
+					throw Error('Could not find the data for that resourse. Please try again')
+				}
+				else if (response.status === 500) {
+					console.log('500 (internal server error)')
+					throw Error('Could not fetch the data for that resourse.  Please try again')
+				}
+				throw Error('Oh No! Someting went wrong! The error has to do with status code:', response.status, 'Please try again')
+			}
+
 			const matchData = await response.json();
 			console.log('då', matchData);
 
+			return matchData
 		} catch (error) {
+			setError(error.message)
 			return error.message;
 		}
 	};
 
+
 	return (
-		<div className="battle">
+		<div className="main-container">
 			<h1> Battle </h1>
-			{ isLoaded ? <p>Loading...</p> : <>
-				{error && <div>{error}</div>}
-				<article className="contestants">
+
+			{isLoaded ? <p>Loading...</p> : <>
+
+				{error &&
+					<div className="error-message">
+						<p>{error}</p>
+						<button onClick={() => setNewGame(!newGame)}>Reload page</button>
+					</div>
+				}
+				<article className="flex-content">
 
 					<div className="battle-card">
 						<HamsterCard
@@ -141,8 +196,7 @@ const Battle = () => {
 						</button>
 					</div>
 
-
-					<div >
+					<div className="battle-card">
 						<HamsterCard
 							imgName={hamsterTwo.imgName}
 							name={`Name: ${hamsterTwo.name}`}
@@ -150,22 +204,23 @@ const Battle = () => {
 							favFood={`Favorit Food: ${hamsterTwo.favFood}`}
 							loves={`Loves: ${hamsterTwo.loves}`}
 						/>
-						<button onClick={() => handleClick(hamsterTwo, hamsterOne)}>
+						<button onClick={() => handleClick(
+							hamsterTwo, hamsterOne
+						)}>
 							Pick {hamsterTwo.name}
 						</button>
 					</div>
-
 				</article>
-
 			</>}
+			<button onClick={() => setNewGame(!newGame)}>Two New Hamsters</button>
+
+
 			<ModalWinner
 				isShowing={isShowing}
 				hide={toggle}
 				hamsterWins={hamsterWins}
 				hamsterLoser={hamsterLoser}
 			/>
-
-			<button onClick={() => setNewGame(!newGame)}>Two New Hamsters</button>
 		</div>
 	)
 }

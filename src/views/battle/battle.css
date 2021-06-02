@@ -1,0 +1,22 @@
+.Battle {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.battle-card {
+	justify-self: center;
+}
+
+/* .battle-card > .Hamster-card {
+   margin: 2em;
+    padding: 2em;
+    background-color: rgba(255,255,255,0.5);
+    position: relative;
+    width: 35vw;
+    max-width: 450px;
+    height: 22vw;
+    max-height: 450px;
+} */

@@ -1,13 +1,15 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import './App.css';
+import './App.css'
 import Navbar from './components/Navbar';
-import Gallery from './components/gallery/Gallery'
-import HamsterProfile from './components/gallery/HamsterProfile'
-import Battle from './components/battle/Battle'
-import Home from './components/home/Home'
+import Home from './views/home/Home'
+import Battle from './views/battle/Battle'
+import Gallery from './views/gallery/Gallery'
+import HamsterProfile from './views/hamster/HamsterProfile'
+import Stats from './views/stats/Stats'
+//import History from './views/history/History'
 
-import HamsterWarsLogo from './hamster-wars.svg';
+import HamsterWarsLogo from './assets/img/hamster-wars.svg';
 
 //TODO
 // [x] Visa hur många vinster och förluster respektive hamster har efter match omgång.
@@ -15,10 +17,12 @@ import HamsterWarsLogo from './hamster-wars.svg';
 // [x] Validering på Forms med hjälp av css och hooks
 // [x] Lyckad uppladdning medelande toggle
 // [x] Kolla upp om det går att göra antingen en toggle eller if-sats för modal (forms battleWinner)
-// [ ] Fel medelanden om det inte går att nå backend ska finnas möjlighet till att tsta igen.
-// [ ] Kolla så att alla fetch har error medelanden
+// [x] Fel medelanden om det inte går att nå backend ska finnas möjlighet 
+// [x] Kolla så att alla fetch har error medelanden
+//	[ ] Endast Delete Felmeddelande 500, "Vänligen försök ladda om sidan" (inne i fetch) använd catch för att fånga upptill att tsta igen.
 // [ ] Css + Responsive Css
 // [ ] Snygga till Home med kanske regnbågen och hamstern.
+// [ ] readme dokumentatiom.
 
 
 // [ ] Alla Sidor som är klara Plocka ut funktioner och komponenter imån det går
@@ -60,6 +64,7 @@ function App() {
 					<h1>Sorry, the page you are searching for could not be fount.</h1>
 				</div>
 			</Status>
+
 		);
 	}
 
@@ -78,6 +83,9 @@ function App() {
 						<Route path="/gallery" component={Gallery} />
 						<Route path="/HamsterProfile/:id" component={HamsterProfile} />
 						<Route path="/battle" component={Battle} />
+						<Route path="/stats" component={Stats} />
+						{/* <Route path="/history" component={History} />
+					 */}
 						<Route exact path="/" component={Home} />
 						<Route component={NotFound} />
 					</Switch>

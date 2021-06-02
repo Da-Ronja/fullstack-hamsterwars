@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HamsterCard from "../HamsterCard";
+import HamsterCard from "../../components/HamsterCard";
 import { Link } from "react-router-dom"
 import "./modal.css"
 //https://upmostly.com/tutorials/modal-components-react-custom-hooks
@@ -11,10 +11,21 @@ import "./modal.css"
 const ModalWinner = ({ isShowing, hide, hamsterWins, hamsterLoser }) => isShowing ? ReactDOM.createPortal(
 	<React.Fragment>
 		<div className="modal-overlay" />
-		<div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
+		<div
+			className="modal-wrapper"
+			aria-modal aria-hidden
+			tabIndex={-1}
+			role="dialog"
+		>
 			<div className="modal">
 				<div className="modal-header">
-					<button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
+					<button
+						type="button"
+						className="modal-close-button"
+						data-dismiss="modal"
+						aria-label="Close"
+						onClick={hide}
+					>
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -43,7 +54,12 @@ const ModalWinner = ({ isShowing, hide, hamsterWins, hamsterLoser }) => isShowin
 								Visit {hamsterLoser.name}
 							</Link>
 						</div>
-						<button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
+						<button
+							type="button"
+							className="modal-close-button" data-dismiss="modal"
+							aria-label="Close"
+							onClick={hide}
+						>
 							Play again!
 						</button>
 					</div>
