@@ -119,8 +119,9 @@ const Battle = () => {
 			}
 
 			const hamsterData = await response.json();
-			console.log('hej', hamsterData);
+			// console.log('hej', hamsterData);
 
+			return hamsterData
 		} catch (error) {
 			setError(error.message)
 			return error.message;
@@ -172,13 +173,11 @@ const Battle = () => {
 		<div className="main-container">
 			<h1> Battle </h1>
 
-			{isLoaded ? <p>Loading...</p> : <>
+			{ isLoaded ? <p>Laddar...</p> : <>
 
-				{error &&
-					<div className="error-message">
-						<p>{error}</p>
-						<button onClick={() => setNewGame(!newGame)}>Reload page</button>
-					</div>
+				{error && <div className="error-message"> <p>{error}</p>
+					<button onClick={() => setNewGame(!newGame)}>Reload page</button>
+				</div>
 				}
 				<article className="flex-content flex-content-space">
 
