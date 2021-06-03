@@ -7,7 +7,7 @@
 	min-width: 12rem;
 	max-width: 20rem;
     margin-top: 1rem;
-    border: 1px solid #A2D6E3;
+    border: 2px solid #58C9F9;
     border-radius: 4px;
     box-shadow: 0px 2px 2px rgb(0 0 0 / 25%);
    padding: 1rem 2rem;
@@ -26,7 +26,7 @@ input[type='text'] {
 	font-size: 16px;
     width: 100%;
     margin-bottom:1rem;
-    border: 1px solid #A2D6E3;
+    border: 1px solid #58C9F9;
     border-radius: 3px;
     padding: 0.4rem 0.2rem;
     box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.25);

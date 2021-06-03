@@ -14,7 +14,7 @@ import './gallery.css';
 const Gallery = () => {
 	const hamsterPerPage = 3
 	const [currentPage, setCurrentPage] = useState(0);
-	const [data, setData] = useState(3);
+	const [stopData, setStopData] = useState(3);
 	const [isShowing, setIsShowing] = useState(false)
 	const { data: hamsters, isLoaded, error } = useFetch('/hamsters')
 	// console.log(hamsters)
@@ -29,7 +29,7 @@ const Gallery = () => {
 
 	function nextPage() {
 		if (currentPage < hamsters.length - 1) {
-			setData(data + 1)
+			setStopData(stopData + 1)
 			setCurrentPage(currentPage => currentPage + hamsterPerPage)
 		}
 	}
@@ -69,27 +69,7 @@ const Gallery = () => {
 				hide={toggle}
 			/>
 
-			<article className="gallery-list">
-
-				<div className="grid-content">
-					<HamsterCard
-						imgName
-						name={"Karin"}
-					/>
-					<HamsterCard
-						imgName
-						name={"Karin"}
-					/>
-					<HamsterCard
-						imgName
-						name={"Karin"}
-					/>
-				</div>
-			</article>
-			<button onClick={prevPage}>Prev</button>
-			<button onClick={nextPage}>Next</button>
-
-			{/* { isLoaded ? <p>Loading...</p> : <>
+			{ isLoaded ? <p>Loading...</p> : <>
 				<article className="gallery-list">
 					{error &&
 						<div className="error-message">
@@ -103,7 +83,7 @@ const Gallery = () => {
 				</article>
 				<button onClick={prevPage}>Prev</button>
 				<button onClick={nextPage}>Next</button>
-			</>} */}
+			</>}
 		</div>
 	)
 }

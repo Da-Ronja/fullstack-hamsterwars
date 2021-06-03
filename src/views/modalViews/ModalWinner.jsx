@@ -19,20 +19,10 @@ const ModalWinner = ({ isShowing, hide, hamsterWins, hamsterLoser }) => isShowin
 		>
 			<div className="modal">
 				<div className="modal-header">
-					<button
-						type="button"
-						className="modal-close-button"
-						data-dismiss="modal"
-						aria-label="Close"
-						onClick={hide}
-					>
-						<span aria-hidden="true">&times;</span>
-					</button>
 				</div>
 				<div className="modal">
 					<h2>{hamsterWins.name} killed {hamsterLoser.name} with cutness!</h2>
 					<p>{hamsterWins.name} has won {hamsterWins.wins + 1} out of {hamsterWins.games + 1} games and lost {hamsterWins.defeats}.</p>
-					<p>{hamsterWins.id}</p>
 
 					<section className="modal-hamster-cards">
 						<div className="winner-article">

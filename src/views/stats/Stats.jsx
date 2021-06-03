@@ -1,5 +1,6 @@
 import './stats.css';
 import useFetch from "../useFetch";
+import { Link } from "react-router-dom"
 
 const Stats = () => {
 
@@ -11,14 +12,18 @@ const Stats = () => {
 
 	const renderWinnwes = topFiveWinnwes.map(hamster => (
 		<li key={hamster.id} className="statsHamsters">
-			<p style={{ fontWeight: "bold" }}>{`Name: ${hamster.name}`} </p>
+			<Link to={`/HamsterProfile/${hamster.id}`} className="list-card-link">
+				<p style={{ fontWeight: "bold" }}>{`Name: ${hamster.name}`} </p>
+			</Link>
 			<p>{`Wins: ${hamster.wins}`} </p>
 			<p>{`Games: ${hamster.games}`} </p>
 		</li>
 	))
 	const renderLosers = topFiveLosers.map(hamster => (
 		<li key={hamster.id} className="statsHamsters">
-			<p style={{ fontWeight: "bold" }}>{`Name: ${hamster.name}`} </p>
+			<Link to={`/HamsterProfile/${hamster.id}`} className="list-card-link">
+				<p style={{ fontWeight: "bold" }}>{`Name: ${hamster.name}`} </p>
+			</Link>
 			<p>{`Defeats: ${hamster.defeats}`} </p>
 			<p>{`Games: ${hamster.games}`} </p>
 		</li>
