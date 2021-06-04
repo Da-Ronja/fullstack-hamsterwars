@@ -1,6 +1,4 @@
-// REVIEW and do better
-
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import HamsterCard from "../../components/HamsterCard";
 import { Link } from "react-router-dom"
@@ -24,31 +22,36 @@ const ModalWinner = ({ isShowing, hide, hamsterWins, hamsterLoser }) => isShowin
 					<h2>{hamsterWins.name} killed {hamsterLoser.name} with cutness!</h2>
 					<p>{hamsterWins.name} has won {hamsterWins.wins + 1} out of {hamsterWins.games + 1} games and lost {hamsterWins.defeats}.</p>
 
-					<section className="modal-hamster-cards">
+					<section className="grid-content">
 						<div className="winner-article">
-							<HamsterCard
-								imgName={hamsterWins.imgName}
-							/>
-							<Link to={`/HamsterProfile/${hamsterWins.id}`}>
+							<>
+								<Link to={`/HamsterProfile/${hamsterWins.id}`}>
+									<HamsterCard
+										imgName={hamsterWins.imgName}
+									/>
 								Visit {hamsterWins.name}
-							</Link>
+								</Link>
+							</>
 						</div>
 
+
 						<div className="loser-article">
-							<HamsterCard
-								imgName={hamsterLoser.imgName}
-							/>
-							<Link to={`/HamsterProfile/${hamsterLoser.id}`}>
+							<>
+								<Link to={`/HamsterProfile/${hamsterLoser.id}`}>
+									<HamsterCard
+										imgName={hamsterLoser.imgName}
+									/>
 								Visit {hamsterLoser.name}
-							</Link>
+								</Link>
+								<div className="modal-battle-vinner-text">
+									<p>who has:
+									lost {hamsterLoser.defeats + 1},
+									won {hamsterLoser.wins},
+									a total of {hamsterLoser.games + 1} games</p>
+								</div>
+							</>
 						</div>
 					</section>
-					<div>
-						<p>{hamsterLoser.name} has:</p>
-						<p>lost {hamsterLoser.defeats + 1},</p>
-						<p>won {hamsterLoser.wins},</p>
-						<p>a total of {hamsterLoser.games + 1} games</p>
-					</div>
 					<div>
 						<button
 							type="button"

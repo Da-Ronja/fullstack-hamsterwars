@@ -1,7 +1,3 @@
-//TODO
-// [ ] Vg del ( visa vilka hamstern har besegrat) -ska ligga i hamsterProfile.
-//IDEA Show hamsterName when hovoring over img
-//https://stackoverflow.com/questions/14263594/how-to-show-text-on-image-when-hovering
 
 
 import React, { useState } from 'react';
@@ -12,12 +8,13 @@ import ModalForms from "../modalViews/ModalForms";
 import './gallery.css';
 
 const Gallery = () => {
-	const hamsterPerPage = 3
+	const hamsterPerPage = 6
+
 	const [currentPage, setCurrentPage] = useState(0);
 	const [stopData, setStopData] = useState(3);
 	const [isShowing, setIsShowing] = useState(false)
 	const { data: hamsters, isLoaded, error } = useFetch('/hamsters')
-	// console.log(hamsters)
+	//console.log(hamsters)
 
 	function toggle() {
 		setIsShowing(!isShowing);
@@ -25,7 +22,8 @@ const Gallery = () => {
 
 	// PAINATION
 	const displayPage = hamsters.slice(currentPage, currentPage + hamsterPerPage)
-	// console.log(displayPage, 'displayPage');
+	console.log(displayPage, 'displayPage');
+	// console.log();
 
 	function nextPage() {
 		if (currentPage < hamsters.length - 1) {
@@ -36,11 +34,11 @@ const Gallery = () => {
 
 	const prevPage = () => {
 		if (currentPage > 1) {
-			//console.log('prevPage right');
+			console.log('prevPage right');
 			setCurrentPage(currentPage => currentPage - hamsterPerPage)
 		}
 	}
-	// console.log(currentPage, 'currentPage ');
+	console.log(currentPage, 'currentPage ');
 
 	const renderHamsters = displayPage.map(hamsters => (
 		<li key={hamsters.id} className="list-card">
@@ -77,12 +75,14 @@ const Gallery = () => {
 							<button onClick={() => window.location.reload(false)}>Reload page</button>
 						</div>
 					}
-					<div className="grid-content">
-						{renderHamsters}
+					<div className="gallery-placement">
+						<button onClick={nextPage} className="arrow-button">Next</button>
+						<div className="grid-content">
+							{renderHamsters}
+						</div>
+						<button onClick={prevPage} className="arrow-button">Prev</button>
 					</div>
 				</article>
-				<button onClick={prevPage}>Prev</button>
-				<button onClick={nextPage}>Next</button>
 			</>}
 		</div>
 	)

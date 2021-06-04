@@ -1,5 +1,4 @@
-//TODO
-// [ ] 	Vg del spara data för matcher 
+
 
 import { useState, useEffect } from 'react';
 import HamsterCard from "../../components/HamsterCard";
@@ -41,10 +40,8 @@ const Battle = () => {
 					}
 					throw Error('Oh No! Someting went wrong! The error has to do with status code:', responseOne.status, 'Please try again')
 				}
-
 				const resultOme = await responseOne.json();
 				const resultTwo = await responseTwo.json();
-
 
 				if (resultOme.id === resultTwo.id) {
 					console.log("Two of the same!")
@@ -129,10 +126,12 @@ const Battle = () => {
 	};
 
 	const newMatchPost = async (winner, loser) => {
+		let dateNow = Date.now()
 
 		const newMatch = {
 			winnerId: winner,
-			loserId: loser
+			loserId: loser,
+			dateId: dateNow
 		}
 
 		try {
@@ -141,7 +140,6 @@ const Battle = () => {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(newMatch)
 			});
-
 			if (!response.ok) {
 				if (response.status === 400) {
 					console.log('400(bad request)')
@@ -158,10 +156,8 @@ const Battle = () => {
 				throw Error('Oh No! Someting went wrong! The error has to do with status code:', response.status, 'Please try again')
 			}
 
-			const matchData = await response.json();
-			console.log('då', matchData);
-
-			return matchData
+			const matchData = await response.text();
+			console.log(matchData);
 		} catch (error) {
 			setError(error.message)
 			return error.message;
@@ -175,44 +171,31 @@ const Battle = () => {
 
 			{ isLoaded ? <p>Laddar...</p> : <>
 
-				{error && <div className="error-message"> <p>{error}</p>
+				{error && <div>{error}
 					<button onClick={() => setNewGame(!newGame)}>Reload page</button>
-				</div>
-				}
-				<article className="flex-content flex-content-space">
+				</div>}
+				<article className="grid-content">
 
-					<div className="battle-card">
-						<div onClick={() => handleClick(hamsterOne, hamsterTwo)}>
-							<HamsterCard
-								imgName={hamsterOne.imgName}
-								name={`Name: ${hamsterOne.name}`}
-								age={`Age: ${hamsterOne.age}`}
-								favFood={`Favorit Food: ${hamsterOne.favFood}`}
-								loves={`Loves: ${hamsterOne.loves}`}
-							/>
-						</div>
-						<button onClick={() => handleClick(hamsterOne, hamsterTwo)}>
-							Pick {hamsterOne.name}
-						</button>
+					<div className="battle-card" onClick={() => handleClick(hamsterOne, hamsterTwo)}>
+						<HamsterCard
+							imgName={hamsterOne.imgName}
+							name={`Name: ${hamsterOne.name}`}
+							age={`Age: ${hamsterOne.age}`}
+							favFood={`Favorit Food: ${hamsterOne.favFood}`}
+							loves={`Loves: ${hamsterOne.loves}`}
+						/>
 					</div>
 
-					<div onClick={() => handleClick(
+					<div className="battle-card" onClick={() => handleClick(
 						hamsterTwo, hamsterOne
 					)}>
-						<div className="battle-card">
-							<HamsterCard
-								imgName={hamsterTwo.imgName}
-								name={`Name: ${hamsterTwo.name}`}
-								age={`Age: ${hamsterTwo.age}`}
-								favFood={`Favorit Food: ${hamsterTwo.favFood}`}
-								loves={`Loves: ${hamsterTwo.loves}`}
-							/>
-						</div>
-						<button onClick={() => handleClick(
-							hamsterTwo, hamsterOne
-						)}>
-							Pick {hamsterTwo.name}
-						</button>
+						<HamsterCard
+							imgName={hamsterTwo.imgName}
+							name={`Name: ${hamsterTwo.name}`}
+							age={`Age: ${hamsterTwo.age}`}
+							favFood={`Favorit Food: ${hamsterTwo.favFood}`}
+							loves={`Loves: ${hamsterTwo.loves}`}
+						/>
 					</div>
 				</article>
 			</>}

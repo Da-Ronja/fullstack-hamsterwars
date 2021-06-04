@@ -1,8 +1,5 @@
-//TODO
-//REVIEW	förklara hur man använder appen
 
 import './home.css';
-//import Hover from "./Hover"
 import Rainbow from '../../assets/img/rainbow.svg'
 
 const Home = () => {
@@ -15,7 +12,6 @@ const Home = () => {
 			<h3 className="cutness-to-death">Cutness to Death</h3>
 			<p>A playful app where you can vote for the cutest hamster. You can also upload your own hamster or just explore and read fun facts about other hamster.</p>
 
-			{/* <Hover /> */}
 		</section>
 	)
 }

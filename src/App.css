@@ -54,6 +54,7 @@
     justify-self: center;
 }
 
+
 .navbar :where( a ) {
 	border: 2px solid black;
     padding: 4px 8px;
@@ -73,7 +74,22 @@ li {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	width: 96%;
+	width: 90%;
+	object-fit: cover;
+}
+
+.hamster-profile-info-flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 50%;
+}
+
+.hamster-profile-card-img > img {
+ 	width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .home-info-section {
@@ -99,18 +115,22 @@ li {
 	justify-items: center;
 }
 
-.gallery-list{
+/* .gallery-list{
 	width: 100%;
 	
-}
+} */
 
 .stats-list {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border: black solid 2px;
-	justify-content: center;
-	padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: black solid 2px;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-top: 3px;
+    padding-right: 1rem;
+    padding-left: 1rem;
     max-width: 50%;
     width: 32%;
 }
@@ -135,63 +155,77 @@ li {
 }
 
 .Hamster-card {
+		width:100%;
+    height:100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	position: relative;
+}
+
+
+.hamster-card-img img {
+	width:100%;
+    height:100%;
+	object-fit:cover;
+	border-radius: 32px;
+	cursor: pointer;
 }
 
 .main-container {
 	min-width: 240px;
-	/* width: 90%; if no backgraound */
-	width: 79%;
-    /* min-height: 32rem; */
+	width: 80%;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
-    margin-top: 2rem;
-    /* margin-bottom: 2rem;*/
-}
-
-.hamster-profile-card {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1rem 2rem 3rem;
     justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+	    padding: 2rem 0;
+		    border-radius: 8px;
 }
 
-.hamster-profile-card :where( div ) {
-	padding: 2rem;
+
+.Hamster-card{
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+	position: relative;
+}
+
+.hamster-card-img{
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+	display: block;
+	max-height: 22rem;
+}
+
+.hamster-profile-info-text {
 	align-self: center;
+	text-align: left;
 }
 
-.hamster-profile-card :where( img ) {
-	max-width: 50%;
-	min-width: 18rem;
-    height: 30rem;
-    object-fit: cover;
-}
 
-.gallery-list :where( img ) {
-	min-width: 12rem;
-    margin: -1rem 0rem -2rem;
+.Hamster-card-details {
+	position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+	object-fit:cover;
+	border-radius: 0 0 32px 32px;
 }
-
-.battle-card :where( img ) {
-	min-width: 11rem;
-}
-
-.Hamster-card  img {
-	height: 16rem;
-    display: block;
-    max-width: 24vw;
-    padding: 1em;
-    margin: -1rem 1rem -2rem;
-    border-radius: 32px;
-    object-fit: cover;
-	cursor: pointer;
+.Hamster-card:hover .Hamster-card-details {
+opacity: 1;
 }
 
 .Hamster-card :where( h2, p ) {

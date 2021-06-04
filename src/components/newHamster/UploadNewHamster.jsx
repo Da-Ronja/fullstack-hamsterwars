@@ -1,4 +1,3 @@
-// REVIEW and do better
 
 import { useState } from "react"
 import './uploadNewHamster.css'

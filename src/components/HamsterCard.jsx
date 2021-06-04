@@ -15,7 +15,9 @@ const HamsterCard = (props) => {
 	return (
 		<article className="Hamster-card">
 			<h2>{name}</h2>
-			<img src={urlImg + imgName} alt={name} />
+			<div className="hamster-card-img">
+				<img src={urlImg + imgName} alt={name} />
+			</div>
 			<div className="Hamster-card-details">
 				<p>{age}</p>
 				<p>{favFood}</p>

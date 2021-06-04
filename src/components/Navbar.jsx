@@ -9,7 +9,7 @@ const Navbar = () => {
 				<NavLink to="/battle"> Battle </NavLink>
 				<NavLink to="/gallery"> Gallery</NavLink>
 				<NavLink to="/stats"> Statistic </NavLink>
-				{/* <NavLink to="/historia"> Historia </NavLink> */}
+				{/* <NavLink to="/history"> Historia </NavLink> */}
 			</Route>
 		</nav>
 	)
